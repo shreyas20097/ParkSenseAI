@@ -23,15 +23,120 @@ ParkSight AI is an advanced traffic operations platform designed to move law enf
 
 ## How to Run
 
-1. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+### Prerequisites
 
-2. *(Optional)* **Run the Pipeline**:
-   Ensure `parking_violations.csv` is in the root directory, then execute the notebook to regenerate the `outputs/` folder.
+* Python 3.10+ recommended
+* Either:
 
-3. **Launch the Dashboard**:
-   ```bash
-   streamlit run dashboard.py
-   ```
+  * **uv** (recommended) — fast Python package and environment manager
+  * **pip** with a virtual environment
+
+## Quick Start
+
+```bash
+uv venv
+source .venv/bin/activate #.venv\Scripts\Activate.ps1 (for windows)
+uv sync
+streamlit run dashboard.py
+```
+
+### 1. Install Dependencies
+
+#### Option A: Using uv (Recommended)
+
+Create a virtual environment and install dependencies from `pyproject.toml`:
+
+```bash
+uv venv
+```
+
+Activate the environment:
+
+**macOS / Linux**
+
+```bash
+source .venv/bin/activate
+```
+
+**Windows (PowerShell)**
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Install the project:
+
+```bash
+uv sync
+```
+
+#### Option B: Using pip
+
+Create and activate a virtual environment:
+
+**macOS / Linux**
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+**Windows (PowerShell)**
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. (Optional) Regenerate Pipeline Outputs
+
+If you want to rerun the data pipeline:
+
+1. Place `parking_violations.csv` in the project root.
+2. Open and execute `ParkSight_AI_Pipeline.ipynb`.
+
+This will regenerate the files inside the `outputs/` directory:
+
+```text
+outputs/
+├── hotspots.csv
+├── leaderboard_priority.csv
+├── model_metrics.json
+├── parking_hotspots_map.html
+├── predictions.csv
+└── station_ranking.csv
+```
+
+### 3. Launch the Dashboard
+
+From the project root:
+
+```bash
+streamlit run dashboard.py
+```
+
+Once started, Streamlit will display a local URL (typically `http://localhost:8501`) in your terminal. Open it in your browser to access the dashboard.
+
+### Project Structure
+
+```text
+.
+├── dashboard.py
+├── outputs
+│   ├── hotspots.csv
+│   ├── leaderboard_priority.csv
+│   ├── model_metrics.json
+│   ├── parking_hotspots_map.html
+│   ├── predictions.csv
+│   └── station_ranking.csv
+├── ParkSight_AI_Pipeline.ipynb
+├── pyproject.toml
+├── README.md
+└── requirements.txt
+```
